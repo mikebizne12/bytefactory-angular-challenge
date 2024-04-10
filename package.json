@@ -9,9 +9,7 @@
     "test": "ng test",
     "lint": "eslint . --ext .ts",
     "format": "prettier --check \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "format:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\"",
-    "prepare": "husky",
-    "pre-commit": "npm run lint && npm format:write"
+    "format:write": "prettier --write \"src/**/*.{js,jsx,ts,tsx,json,css,scss,md}\""
   },
   "private": true,
   "dependencies": {
