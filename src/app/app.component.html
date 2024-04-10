@@ -1,5 +1,8 @@
 <div class="container">
-  <app-search-box></app-search-box>
-
-  <app-table></app-table>
+  <app-search-box (handleFilter)="handleFilter($event)"></app-search-box>
+  <app-table
+    [data]="userList"
+    [isLoading]="isLoading"
+    [filterText]="filterText"
+  ></app-table>
 </div>

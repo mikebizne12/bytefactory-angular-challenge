@@ -18,7 +18,7 @@
   </thead>
 
   <tbody>
-    <tr *ngFor="let user of data;">
+    <tr *ngFor="let user of data | filterText : filterText">
       <td>{{ user.firstname }}</td>
       <td>{{ user.surname }}</td>
       <td>{{ user.username }}</td>
@@ -26,5 +26,7 @@
     </tr>
   </tbody>
 </table>
+
+<div *ngIf="isLoading; then loading"></div>
 
 <ng-template #loading>Loading users...</ng-template>

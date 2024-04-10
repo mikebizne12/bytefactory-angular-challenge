@@ -1,11 +1,10 @@
 import { Component, Input, OnChanges } from '@angular/core';
-
-export interface ITableData extends Pick<any, 'id' | 'username' | 'email'> {
-  firstname: string;
-  surname: string;
-}
+import { IUserData } from 'src/app/interfaces/UserData';
 
 type columns = 'firstname' | 'surname' | 'username' | 'email';
+
+export const compare = (v1: string, v2: string) =>
+  v1 < v2 ? -1 : v1 > v2 ? 1 : 0;
 
 @Component({
   selector: 'app-table',
@@ -15,15 +14,19 @@ type columns = 'firstname' | 'surname' | 'username' | 'email';
 export class TableComponent implements OnChanges {
   @Input() sortColumn: columns = 'firstname';
   @Input() sortDirection: 'asc' | 'desc' = 'asc';
-
-  data: ITableData[] = [];
+  @Input() data: IUserData[] = [];
+  @Input() isLoading: boolean = false;
+  @Input() filterText: string = '';
 
   ngOnChanges(): void {
     this.sortData();
   }
 
   private sortData(): void {
-    // @TODO
+    this.data = [...this.data].sort((a, b) => {
+      const res = compare(a[this.sortColumn], b[this.sortColumn]);
+      return this.sortDirection === 'asc' ? res : -res;
+    });
   }
 
   sortTable(sortColumn: columns): void {
