@@ -1,5 +1,5 @@
-import { Component, OnChanges, OnInit } from '@angular/core';
-import { debounceTime, distinctUntilChanged, finalize, tap } from 'rxjs';
+import { Component, OnInit } from '@angular/core';
+import { debounceTime, distinctUntilChanged } from 'rxjs';
 import { IUserData } from 'src/app/interfaces/UserData';
 import { SearchServiceService } from 'src/app/services/search-service.service';
 import { UsersService } from 'src/app/services/users.service';
