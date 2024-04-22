@@ -3,22 +3,22 @@
     <tr>
       <th (click)="sortTable('firstname')">
         First name
-        {{ "firstname" | sortDirection : sortColumn : sortDirection }}
+        {{ 'firstname' | sortDirection: sortColumn : sortDirection }}
       </th>
       <th (click)="sortTable('surname')">
-        Surname{{ "surname" | sortDirection : sortColumn : sortDirection }}
+        Surname{{ 'surname' | sortDirection: sortColumn : sortDirection }}
       </th>
       <th (click)="sortTable('username')">
-        Username{{ "username" | sortDirection : sortColumn : sortDirection }}
+        Username{{ 'username' | sortDirection: sortColumn : sortDirection }}
       </th>
       <th (click)="sortTable('email')">
-        Email{{ "email" | sortDirection : sortColumn : sortDirection }}
+        Email{{ 'email' | sortDirection: sortColumn : sortDirection }}
       </th>
     </tr>
   </thead>
 
   <tbody>
-    <tr *ngFor="let user of data | filterText : filterText">
+    <tr *ngFor="let user of userList | filterText: filterText">
       <td>{{ user.firstname }}</td>
       <td>{{ user.surname }}</td>
       <td>{{ user.username }}</td>

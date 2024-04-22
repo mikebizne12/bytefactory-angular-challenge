@@ -1,14 +1,15 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
+import { SearchServiceService } from 'src/app/services/search-service.service';
 
 @Component({
   selector: 'app-search-box',
   templateUrl: './search-box.component.html',
 })
 export class SearchBoxComponent {
-  @Output() handleFilter = new EventEmitter<string>();
+  constructor(private searchService: SearchServiceService) {}
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   onFilter(e: any) {
-    this.handleFilter.emit(e.target.value);
+    this.searchService.updateSearchValue(e.target.value);
   }
 }
