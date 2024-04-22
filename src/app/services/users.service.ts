@@ -1,15 +1,19 @@
 import { Injectable } from '@angular/core';
 import { ApiService } from './api.service';
-import { Observable, shareReplay } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 import { IUserData } from '../interfaces/UserData';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UsersService {
+  private userListSubject = new BehaviorSubject<IUserData[]>([]);
+  userList$ = this.userListSubject.asObservable();
   constructor(public apiService: ApiService) {}
 
-  list(): Observable<IUserData[]> {
-    return this.apiService.get<IUserData[]>('users').pipe(shareReplay(1));
+  list(): void {
+    this.apiService.get<IUserData[]>('users').subscribe((data) => {
+      this.userListSubject.next(data);
+    });
   }
 }
